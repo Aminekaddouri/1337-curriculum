@@ -1,49 +1,50 @@
 # minishell
 
-> A fully functional Unix shell written in C — your own little Bash.
+> A fully functional Unix shell in C — your own little Bash.
 
-A C program that mimics the behavior of a Unix shell like `bash`. It parses commands, handles built-ins, manages processes, and supports pipes and redirections. Built to understand how shells work under the hood.
+A C program that mimics the behavior of a Unix shell like `bash`. This project demonstrates deep understanding of **process management**, **file descriptors**, **parsing**, and **system calls**. Implements all mandatory features and advanced bonus functionality.
 
 ---
 
-### 🛠️ Features (Mandatory)
+### 🛠️ Features
 
-- **Interactive Prompt**: Displays a prompt (`> `) and reads commands from the user.
-- **Command Execution**: Runs executables using `PATH` lookup or absolute/relative paths.
+#### ✅ **Mandatory Part**
+- **Command Execution**: Parses and executes external commands (e.g., `ls`, `grep`, `cat`)
 - **Built-in Commands**:
   - `echo` (with `-n` option)
   - `cd` (absolute and relative paths)
-  - `pwd` (without options)
-  - `export` (without options)
-  - `unset` (without options)
-  - `env` (without arguments)
-  - `exit` (with or without status)
+  - `pwd` (no options)
+  - `export` (no options)
+  - `unset` (no options)
+  - `env` (no arguments)
+  - `exit` (no options)
+- **Pipes (`|`)**: Chains commands with proper file descriptor management
+- **Redirections**:
+  - `<` : Input redirection
+  - `>` : Output redirection (truncate)
+  - `>>` : Output redirection (append)
 - **Signal Handling**:
-  - `Ctrl-C` → New prompt on a new line
-  - `Ctrl-D` → Exits the shell
-  - `Ctrl-\` → Ignored (no `SIGQUIT`)
+  - `Ctrl+C` → New prompt (SIGINT)
+  - `Ctrl+D` → Exit shell (EOF)
+  - `Ctrl+\` → Ignored (SIGQUIT)
 - **Quoting & Escaping**:
   - `'` (single quotes): Prevents all interpretation
-  - `"` (double quotes): Prevents interpretation except for `$`
-  - `$?` expands to the exit status of the last command
-  - `$VAR` expands environment variables
-- **Redirections**:
-  - `< file` → Input redirection
-  - `> file` → Output redirection (truncate)
-  - `>> file` → Output redirection (append)
-  - `<< LIMIT` → Heredoc (reads until `LIMIT`)
-- **Pipes** (`|`): Connects output of one command to input of the next
-- **History**: Preserved across commands using `readline`
-- **Error Handling**: Graceful errors for invalid syntax, missing files, etc.
-- **Memory Safety**: No memory leaks in user code (valgrind-clean)
+  - `"` (double quotes): Prevents interpretation except for `$` (variable expansion)
+  - `$?` : Expands to exit status of last command
+  - `$$` : Expands to shell PID
 
-> ❌ **Bonus features** (`&&`, `||`, `*` wildcard) were **not implemented**.
+#### ✅ **Bonus Part Implemented**
+- **Logical Operators**: `&&` and `||` with support for parentheses `( )` to manage execution order
+- **Wildcard Expansion**: `*` expands to matching files in the current directory
+- **Hereditary Environment**: Environment variables are inherited and modifiable via `export`
+- **Advanced Parsing**: Handles complex nested commands and operator precedence
 
 ---
 
 ### 🧰 Tech Stack
 - **Language**: C
+- **Core Concepts**: `fork`, `execve`, `pipe`, `dup2`, `signal`, `waitpid`
 - **Tools**: `make`, `gcc` with `-Wall -Wextra -Werror`
 - **Standard**: C89
-- **Key Functions**: `fork`, `execve`, `pipe`, `dup2`, `waitpid`, `signal`, `sigaction`, `readline`, `getenv`
-- **Libft**: Authorized and used
+- **External Functions**: `malloc`, `free`, `write`, `access`, `stat`, `opendir`, `getcwd`, `strerror`, `rl_*` (readline)
+- **Libft**: Used for string utilities (copied into `libft/` folder)
