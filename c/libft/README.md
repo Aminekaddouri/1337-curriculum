@@ -33,8 +33,7 @@ A core C library project where I re-implemented essential `libc` functions from 
 
 ### 🧰 Tech Stack
 - **Language**: C
-- **Tools**: `make`, `ar`, `gcc` with `-Wall -Wextra -Werror`
-- **Standard**: C89 (no C99 features like `restrict`)
+- **Tools**: `make`, `gcc` with `-Wall -Wextra -Werror`
 
 ---
 
@@ -46,3 +45,4 @@ make bonus  # Includes linked list functions
 make clean  # Removes object files
 make fclean # Removes libft.a and object files
 make re     # Rebuilds the library
+
