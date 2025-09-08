@@ -35,14 +35,5 @@ A core C library project where I re-implemented essential `libc` functions from 
 - **Language**: C
 - **Tools**: `make`, `gcc` with `-Wall -Wextra -Werror`
 
----
 
-### 📂 Build & Use
-
-```bash
-make        # Compiles all functions into libft.a
-make bonus  # Includes linked list functions
-make clean  # Removes object files
-make fclean # Removes libft.a and object files
-make re     # Rebuilds the library
 
