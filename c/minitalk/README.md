@@ -36,9 +36,4 @@ A C program that enables a client to send a string to a server in real time usin
 - **Standard**: C89
 - **Key Concepts**: UNIX signals, bit manipulation, process communication
 
----
 
-### 📂 Build & Usage
-
-```bash
-make        # Compiles client and server
