@@ -33,9 +33,4 @@ A C program that calculates and displays the shortest sequence of operations nee
 - **External Functions**: `write`, `read`, `malloc`, `free`, `exit`, `ft_printf` (custom)
 - **Libft**: Authorized and used for `ft_printf`
 
----
 
-### 📂 Build & Usage
-
-```bash
-make        # Compiles push_swap
